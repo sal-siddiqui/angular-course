@@ -1,0 +1,32 @@
+# Angular build output
+/dist/
+/out-tsc/
+/tmp/
+/.angular/
+
+# IDEs and editors
+.idea/
+.vscode/
+*.sublime*
+
+# Node modules
+/node_modules/
+
+# Compiled files
+*.js
+*.js.map
+*.tsbuildinfo
+
+# Logs
+*.log
+
+# Environment files
+/src/environments/environment*.ts
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# NPM/Yarn lock files (optional - keep one)
+package-lock.json
+yarn.lock
