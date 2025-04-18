@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 
  let randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
@@ -11,23 +11,15 @@ import { DUMMY_USERS } from '../dummy-users';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  selectedUser = signal(DUMMY_USERS[randomIndex])
-  
-  get src() {
-    return computed(() => 'assets/users/' + this.selectedUser().avatar)
-  }
-  
-  get alt() {
-    return computed(() => 'Picture of ' + this.selectedUser().name)
-  }
-  
-  onClick() {
-    randomIndex = (randomIndex + 1) % DUMMY_USERS.length
-    console.log(randomIndex)
-    this.selectedUser.set(DUMMY_USERS[randomIndex])
-  }
 
+   @Input({required: true}) user!: {id: string; avatar: string; name: string;};
+   @Output() select = new EventEmitter()
 
+   get src() {
+    return 'assets/users/' + this.user.avatar;
+   }
 
-  
+   onClick() {
+    this.select.emit(this.user.id);
+    }
 }
